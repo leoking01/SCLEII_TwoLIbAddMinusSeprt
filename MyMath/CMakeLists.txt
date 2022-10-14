@@ -6,6 +6,8 @@ set_target_properties(mymath PROPERTIES PUBLIC_HEADER ${CMAKE_SOURCE_DIR}/MyMath
 
 
 
+
+
 #//---MyMath---------------------------------------------
 # 写入库的版本信息
 
@@ -16,7 +18,7 @@ write_basic_package_version_file(
 )
 
 # 将库文件，可执行文件，头文件安装到指定目录
-install(TARGETS mymath    mymathapp
+install(TARGETS mymath
     EXPORT MyMathTargets
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
@@ -36,3 +38,8 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/MyMath/MyMathConfig.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/MyMathConfigVersion.cmake"
     DESTINATION lib/cmake/MyMath
 )
+
+
+message( "{mymath_INCLUDE_DIRS} = ${mymath_INCLUDE_DIRS}"  )
+message( "{INTERFACE_INCLUDE_DIRECTORIES} = ${INTERFACE_INCLUDE_DIRECTORIES}"  )
+

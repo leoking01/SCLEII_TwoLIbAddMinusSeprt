@@ -2,11 +2,14 @@ cmake_minimum_required(VERSION 3.0)
 
 project( SCLEII_TwoLIbAddMinusSeprt VERSION 1.0)
 
+
+
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 if(MSVC)
     set(CMAKE_DEBUG_POSTFIX "d")
 endif()
 #link_directories(${CMAKE_BINARY_DIR} )
+
 
 message( "CMAKE_C_COMPILER = ${CMAKE_C_COMPILER}"  )
 message( "CMAKE_C_COMPILER_VERSION = ${CMAKE_C_COMPILER_VERSION}"  )
@@ -20,42 +23,25 @@ message( "CMAKE_HOST_SYSTEM_NAME = ${CMAKE_HOST_SYSTEM_NAME}"  )
 message( "CMAKE_VS_PLATFORM_NAME = ${CMAKE_VS_PLATFORM_NAME}"  )
 message( "CMAKE_VS_PLATFORM_TOOLSET = ${CMAKE_VS_PLATFORM_TOOLSET}"  )
 message( "CMAKE_CXX_COMPILER_VERSION = ${CMAKE_CXX_COMPILER_VERSION}"  )
+#message(  "CMAKE_CXX_COMPILER_TARGET= ${CMAKE_CXX_COMPILER_TARGET}"   )
+message(  "CMAKE_CXX_COMPILER_ABI= ${CMAKE_CXX_COMPILER_ABI}"   )
+message(  "CMAKE_CXX_COMPILER_EXTERNAL_TOOLCHAIN= ${CMAKE_CXX_COMPILER_EXTERNAL_TOOLCHAIN}"   )
+message(  "CMAKE_CXX_COMPILER_ID= ${CMAKE_CXX_COMPILER_ID}"   )
+message(  "CMAKE_CXX_COMPILER_ARCHITECTURE_ID= ${CMAKE_CXX_COMPILER_ARCHITECTURE_ID}"   )
+#message(  "CMAKE_HOST_SYSTEM_NAME= ${CMAKE_HOST_SYSTEM_NAME}"   )
 
+ 
 # 改变安装路径可以使用下面的语句，Unix: "/usr/local", Windows: "c:/Program Files/${PROJECT_NAME}" 为默认值，所有的DESTINATION均以此目录为根目录
 # set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/mymath)
-set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/../${PROJECT_NAME}_${CMAKE_CXX_COMPILER_VERSION}_install)
+set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/../${PROJECT_NAME}_${PROJECT_VERSION}_${CMAKE_CXX_COMPILER_ID}_${CMAKE_CXX_COMPILER_VERSION}_install)
 
 
-
-# 如果想生成静态库，使用下面的语句
-# add_library(mymath mymath.cc)
-# target_include_directories(mymath PUBLIC ${CMAKE_SOURCE_DIR}/include)
-
-## 如果想生成动态库，使用下面的语句
-#add_library(mymath SHARED MyMath/mymath.cc)
-#target_include_directories(mymath PRIVATE  ${CMAKE_SOURCE_DIR}/MyMath/include)
-#set_target_properties(mymath PROPERTIES PUBLIC_HEADER ${CMAKE_SOURCE_DIR}/MyMath/include/mymath.h)
-
-
-## 如果想生成动态库，使用下面的语句
-#add_library(minus SHARED minus/minus_opera.cc)
-#target_include_directories(minus PRIVATE  ${CMAKE_SOURCE_DIR}/minus/include)
-#set_target_properties(minus PROPERTIES PUBLIC_HEADER ${CMAKE_SOURCE_DIR}/minus/include/minus_opera.h)
-
-
-add_subdirectory( app )
-## 生成可执行文件
-#add_executable(mymathapp app/mymathApp.cc)
-#target_link_directories(mymathapp PRIVATE ${CMAKE_BINARY_DIR})
-#target_link_libraries(mymathapp mymath)
-#target_include_directories(mymathapp PRIVATE ${CMAKE_SOURCE_DIR}/MyMath/include)
 
 # install
 include(CMakePackageConfigHelpers)
 
 add_subdirectory( MyMath )
 
-
-
-
 add_subdirectory( minus )
+
+add_subdirectory( app )
